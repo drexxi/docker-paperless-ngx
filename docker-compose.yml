@@ -34,13 +34,13 @@ services:
     image: docker.io/library/redis:7
     restart: always
     volumes:
-      - /path/to/data:/data
+      - /volume1/docker/paperless-ngx/redis:/data
 
   db:
     image: docker.io/library/postgres:13
     restart: always
     volumes:
-      - /path/to/pgdata:/var/lib/postgresql/data
+      - /volume1/docker/paperless-ngx/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -60,10 +60,10 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - /path/to/data:/usr/src/paperless/data
-      - /path/to/media:/usr/src/paperless/media
-      - /path/to/export:/usr/src/paperless/export
-      - /path/to/import:/usr/src/paperless/consume
+      - /volume1/docker/paperless-ngx/data:/usr/src/paperless/data
+      - /volume1/docker/paperless-ngx/media:/usr/src/paperless/media
+      - /volume1/docker/paperless-ngx/export:/usr/src/paperless/export
+      - /volume1/docker/paperless-ngx/consume:/usr/src/paperless/consume
 
     environment:
       PAPERLESS_REDIS: redis://broker:6379
